@@ -5,3 +5,9 @@
 /* Vibrant project presentation */
 .project-image, .project-gallery img, .project-carousel img { object-position: top left !important; }
 .project-gallery img, .project-carousel img { filter: saturate(1.12) contrast(1.04); }
+
+@keyframes skills-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.skills-track{display:flex;width:max-content;animation:skills-marquee 58s linear infinite}
+.skills-track.is-paused,.skills-window:hover .skills-track,.skills-window:focus-within .skills-track{animation-play-state:paused}
+.skills-group{display:flex;flex:none;gap:12px;padding-right:12px}
+@media(prefers-reduced-motion:reduce){.skills-track{animation:none!important}.skills-window{overflow-x:auto!important;mask-image:none!important}}

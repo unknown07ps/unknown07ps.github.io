@@ -24,6 +24,10 @@ a{color:inherit}
 .resume-btn{padding:7px 11px!important;border:1px solid var(--line);border-radius:999px;color:#fff!important;background:#ffffff08}
 .section{max-width:var(--max);margin:auto;padding:110px 20px}
 .hero{min-height:calc(100vh - 72px);display:flex;align-items:center;padding-top:65px}
+.hero-inner{width:100%;display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.55fr);align-items:center;gap:56px}
+.hero-photo{position:relative;width:min(100%,340px);justify-self:end;overflow:hidden;aspect-ratio:3/4;border:1px solid var(--line);border-radius:26px;background:#ffffff08;box-shadow:0 30px 90px -55px #000}
+.hero-photo img{width:100%;height:100%;display:block;object-fit:contain;object-position:center;transform:scale(.96)}
+.hero-photo figcaption{position:absolute;inset:auto 0 0;padding:48px 18px 18px;background:linear-gradient(transparent,#000b);color:#ffffffdd;font:500 10px "DM Mono",monospace;letter-spacing:.16em}
 .eyebrow{font:500 10px/1.2 "DM Mono",monospace;letter-spacing:.2em;color:#c4b5fd;margin-bottom:18px}
 .hero h1{font-size:clamp(52px,8vw,118px);line-height:.9;letter-spacing:-.075em;margin:0;max-width:1000px}
 .hero h1 em{font-style:normal;background:linear-gradient(90deg,#c4b5fd,#f5f3ff);-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -77,7 +81,7 @@ a{color:inherit}
 .arch{margin-top:18px;padding:11px 13px;border:1px dashed #8b5cf633;background:#8b5cf608;border-radius:10px;color:#c4b5fd99;font:400 9px "DM Mono",monospace;overflow:auto}
 .link{margin-top:auto;padding-top:22px;text-decoration:none;font-size:11px;font-weight:700;color:#d4d4d8;transition:.2s}
 .link:hover{color:#c4b5fd}
-.split{display:grid;grid-template-columns:.7fr 1.3fr;gap:90px;border-top:1px solid #ffffff0d}
+.dsa-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.dsa-card{min-width:0;border:1px solid var(--line);border-radius:16px;padding:14px;background:#0b0c10;overflow:hidden}.dsa-card>a{color:inherit;text-decoration:none}.dsa-card img{display:block;width:100%;height:auto;object-fit:contain;border-radius:9px}.dsa-leetcode img{aspect-ratio:500/320}.dsa-gfg{border-color:#48ff0060;background:#0a0f0a;padding:22px}.dsa-gfg .gfg-name{font-size:20px;font-weight:700;color:#7cff6b}.dsa-gfg .gfg-sub{font-size:12px;color:#c8ffc4bd}.dsa-heatmap{margin-top:22px;aspect-ratio:1170/330;overflow:hidden;border:1px solid #ffffff19;border-radius:9px;background:#0002}.dsa-heatmap img{height:100%;object-fit:contain}.dsa-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:20px}.dsa-stat{min-height:74px;padding:8px 4px;border:1px solid #48ff00;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}.dsa-stat strong{color:#70ff9e;font-size:clamp(20px,3vw,32px);line-height:1}.dsa-stat span{margin-top:7px;color:#c8ffc4;font-size:10px;line-height:1.2}.split{display:grid;grid-template-columns:.7fr 1.3fr;gap:90px;border-top:1px solid #ffffff0d}
 .timeline{border-left:1px solid #ffffff12;padding-left:28px}
 .item{position:relative;padding-bottom:44px}
 .item:before{content:"";position:absolute;left:-33px;top:3px;width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px var(--bg)}
@@ -87,35 +91,65 @@ a{color:inherit}
 .item ul{margin-top:9px;padding-left:20px}
 .item li{margin:5px 0}
 .achievements,.resume-section,.about,.cta{border-top:1px solid #ffffff0d}
-.achievement-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:40px}
-.achievement{padding:22px;border:1px solid var(--line);border-radius:14px;background:#ffffff04}
-.achievement strong{display:block;font-size:15px;margin-bottom:6px}
-.achievement span{display:block;color:#71717a;font-size:12px}
-.achievement.feature{background:linear-gradient(145deg,#8b5cf60d,#ffffff03);border-color:#8b5cf61a}
+.achievement-tools{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin:34px 0 18px}
+.achievement-filters{display:flex;gap:8px;flex-wrap:wrap}
+.achievement-filter{cursor:pointer;border:1px solid var(--line);border-radius:999px;padding:8px 12px;background:#ffffff04;color:#71717a;font:500 10px "DM Mono",monospace;transition:.2s}
+.achievement-filter:hover{color:#eee;border-color:#ffffff35;transform:translateY(-1px)}
+.achievement-filter.active{color:#ede9fe;border-color:#c4b5fd66;background:#c084fc18}
+.achievement-count{display:flex;align-items:center;gap:8px;color:#71717a;font:400 9px "DM Mono",monospace;letter-spacing:.12em}
+.achievement-count:before{content:"✦";color:#c4b5fd;font-size:14px}
+.achievement-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.achievement{position:relative;isolation:isolate;overflow:hidden;min-height:184px;padding:20px;border:1px solid var(--line);border-radius:16px;background-color:#ffffff04;background-image:url('public/images/achievement-clipart.svg');background-repeat:no-repeat;background-position:right -20px bottom -24px;background-size:160px auto;transition:transform .22s,border-color .22s,background-color .22s,opacity .22s}
+.achievement strong{display:block;font-size:15px;line-height:1.4;margin-bottom:7px;color:#fff;text-shadow:0 1px 2px #000;transition:text-shadow .2s,color .2s}
+.achievement .badge{color:#ddd2ff;transition:text-shadow .2s,color .2s}
+.achievement>span:not(.badge):not(.achievement-icon){display:block;color:#c4c4ce;font-size:12px;line-height:1.7;text-shadow:0 1px 4px #000;transition:text-shadow .2s,color .2s}
+.achievement:hover strong,.achievement:active strong{color:#fff;text-shadow:0 0 8px #c4b5fda6,0 0 20px #a78bfa78}
+.achievement:hover .badge,.achievement:active .badge{color:#fff;text-shadow:0 0 12px #c4b5fdd9}
+.achievement:hover>span:not(.badge):not(.achievement-icon),.achievement:active>span:not(.badge):not(.achievement-icon){color:#f4f0ff;text-shadow:0 0 8px #c4b5fd91,0 0 18px #a78bfa5c}
+.achievement.feature{background-image:linear-gradient(145deg,#8b5cf612,#ffffff04 60%,transparent),url('public/images/achievement-clipart.svg');background-position:center,right -20px bottom -24px;background-size:cover,160px auto;border-color:#8b5cf626}
+.achievement-icon{float:right;display:grid;width:34px;height:34px;place-items:center;border:1px solid #ffffff12;border-radius:10px;color:#a1a1aa;background:#0003;font-size:15px}
+.achievement[hidden]{display:none}
 .badge{display:inline-block;margin-bottom:10px;color:#c4b5fd;font:500 9px "DM Mono",monospace;letter-spacing:.1em}
 .resume-box{border:1px solid var(--line);background:linear-gradient(145deg,#ffffff08,#ffffff02);border-radius:18px;padding:26px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
 .resume-box span{color:#52525b;font:400 9px "DM Mono",monospace}
 .about-copy{max-width:900px}
 .about-copy p{font-size:19px;color:#a1a1aa}
-.skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
-.skills span{border:1px solid var(--line);background:#ffffff04;border-radius:8px;padding:7px 9px;color:#d4d4d8;font:400 9px "DM Mono",monospace}
+.skills-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:30px 0 14px;color:#a1a1aa;font:400 10px "DM Mono",monospace;letter-spacing:.14em}
+.skills-head strong{color:#c4b5fd;font-weight:500}
+.skills-toggle{border:1px solid var(--line);border-radius:999px;padding:6px 10px;background:#ffffff04;color:#a1a1aa;font:400 9px "DM Mono",monospace;letter-spacing:.08em;cursor:pointer;transition:.2s}
+.skills-toggle:hover{border-color:#c4b5fd66;color:#fff}
+.skills-window{overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.skills-track{display:flex;width:max-content;animation:skills-marquee 58s linear infinite}
+.skills-track.is-paused,.skills-window:hover .skills-track,.skills-window:focus-within .skills-track{animation-play-state:paused}
+.skills-group{display:flex;flex:none;gap:12px;padding-right:12px}
+.skill-card{display:flex;align-items:center;gap:14px;width:200px;min-height:82px;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:#ffffff06;transition:border-color .2s,background .2s}
+.skill-card:hover{border-color:#c4b5fd55;background:#c084fc12}
+.skill-logo{display:grid;width:48px;height:48px;flex:none;place-items:center;padding:9px;border:1px solid #ffffff12;border-radius:10px;background:#0004}
+.skill-logo img{display:block;width:100%;height:100%;object-fit:contain}
+.skill-mark{display:none;color:#ddd2ff;font:700 10px "DM Mono",monospace}
+.skill-name{display:block;overflow:hidden;color:#e4e4e7;font-size:11px;font-weight:700;text-overflow:ellipsis;white-space:nowrap}
+.skill-category{display:block;margin-top:3px;color:#71717a;font:400 8px "DM Mono",monospace;letter-spacing:.08em}
+.resume-pages{display:grid;gap:18px;margin-top:24px}.resume-pages figure{overflow:hidden;margin:0;border:1px solid #ffffff1a;border-radius:18px;background:#fff;box-shadow:0 22px 65px -45px #000}.resume-pages a{display:block}.resume-pages img{display:block;width:100%;height:auto}.resume-pages figcaption{padding:11px 14px;background:#111;color:#a1a1aa;text-align:center;font:400 9px "DM Mono",monospace;letter-spacing:.12em}
+@keyframes skills-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.skills-track{animation:none}.skills-window{overflow-x:auto;mask-image:none}}
 .cta{text-align:center}
 .cta h2{font-size:clamp(38px,5vw,64px);line-height:1;letter-spacing:-.06em;margin:0 0 30px}
 .cta h2 span{color:#c4b5fd}
 footer{border-top:1px solid #ffffff0d;max-width:var(--max);margin:auto;padding:28px 20px 38px;display:flex;justify-content:space-between;color:#52525b;font:400 9px "DM Mono",monospace}
-@media(max-width:800px){.nav-links a:nth-child(-n+4){display:none}.section{padding:78px 16px}.hero h1{font-size:56px}.section-title{display:block}.filters{margin-top:24px}.grid,.achievement-grid{grid-template-columns:1fr}.card.featured,.card.wide{grid-column:span 1}.split{display:block}.timeline{margin-top:45px}.nav-in{padding:0 16px}.project-gallery{grid-template-rows:100px 100px}.card h3{font-size:23px}}
+@media(max-width:800px){.nav-links a:nth-child(-n+4){display:none}.section{padding:78px 16px}.hero h1{font-size:56px}.hero-inner{grid-template-columns:1fr;gap:38px}.hero-photo{width:min(78%,320px);justify-self:center}.section-title{display:block}.filters{margin-top:24px}.grid,.achievement-grid{grid-template-columns:1fr}.achievement-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.card.featured,.card.wide{grid-column:span 1}.split{display:block}.timeline{margin-top:45px}.nav-in{padding:0 16px}.project-gallery{grid-template-rows:100px 100px}.dsa-cards{grid-template-columns:1fr}.card h3{font-size:23px}}
+@media(max-width:520px){.achievement-grid{grid-template-columns:1fr}.achievement{min-height:0}}
 </style>
 </head>
 <body>
-<header class="nav"><div class="nav-in"><a class="logo" href="#top">SP<b>.</b></a><nav class="nav-links"><a href="#work">Work</a><a href="#experience">Experience</a><a href="#achievements">Achievements</a><a href="#education">Education</a><a href="https://github.com/unknown07ps" target="_blank" rel="noopener">GitHub ↗</a><a class="resume-btn" href="#resume">Resume ↗</a></nav></div></header>
+<header class="nav"><div class="nav-in"><a class="logo" href="#top">SP<b>.</b></a><nav class="nav-links"><a href="#work">Work</a><a href="#experience">Experience</a><a href="#achievements">Achievements</a><a href="#education">Education</a><a href="#dsa">DSA</a><a href="https://github.com/unknown07ps" target="_blank" rel="noopener">GitHub ↗</a><a class="resume-btn" href="#resume">Resume ↗</a></nav></div></header>
 <main id="top">
-<section class="section hero"><div>
+<section class="section hero"><div class="hero-inner"><div class="hero-copy">
 <div class="eyebrow">AI/ML ENGINEER · SOFTWARE ENGINEER</div>
 <h1>Building systems that<br/><em>actually do something.</em></h1>
 <p>I'm Sagar Prajapati, an AI/ML Engineer with hands-on experience across deep learning, computer vision, RAG, LLM applications, backend engineering, distributed systems and DevOps.</p>
 <div class="buttons"><a class="btn primary" href="#work">Explore my work ↓</a><a class="btn secondary" href="mailto:sagarprajapati1374@gmail.com">Get in touch</a></div>
 <div class="meta"><span>INDIA</span><span>B.TECH CSE — AI &amp; ML</span><span>GPA 8.9/10</span><span>IEEE CONFERENCE AUTHOR</span></div>
-</div></section>
+</div><figure class="hero-photo"><img src="public/images/sagar-prajapati-profile.jpeg" alt="Portrait of Sagar Prajapati" loading="eager"/><figcaption>SAGAR PRAJAPATI</figcaption></figure></div></section>
 <section class="section" id="work">
 <div class="section-title"><div><div class="eyebrow">SELECTED PROJECTS</div><h2>Projects from my resume.</h2></div><div class="filters"><button class="filter active" data-filter="all">All</button><button class="filter" data-filter="systems">Systems</button><button class="filter" data-filter="ai">AI / RAG</button><button class="filter" data-filter="devops">DevOps</button><button class="filter" data-filter="vision">Vision</button></div></div>
 <div class="grid">
@@ -137,6 +171,7 @@ footer{border-top:1px solid #ffffff0d;max-width:var(--max);margin:auto;padding:2
 <article class="card" data-tags="ai devops"><div class="card-head"><span class="num">06</span><span class="tag">AGENTS · CODE REVIEW</span></div><h3>Cerberus</h3><div aria-label="Cerberus project screenshots" class="project-carousel" data-carousel=""><button aria-label="Previous image" class="carousel-btn prev" type="button">‹</button><div class="carousel-viewport"><div class="carousel-track"><a class="carousel-slide" href="https://unknown07ps.github.io/assets/projects/cerberus/01.webp" rel="noopener" target="_blank"><img alt="Cerberus screenshot 1" loading="lazy" src="https://unknown07ps.github.io/assets/projects/cerberus/01.webp"/></a><a class="carousel-slide" href="https://unknown07ps.github.io/assets/projects/cerberus/02.webp" rel="noopener" target="_blank"><img alt="Cerberus screenshot 2" loading="lazy" src="https://unknown07ps.github.io/assets/projects/cerberus/02.webp"/></a><a class="carousel-slide" href="https://unknown07ps.github.io/assets/projects/cerberus/03.webp" rel="noopener" target="_blank"><img alt="Cerberus screenshot 3" loading="lazy" src="https://unknown07ps.github.io/assets/projects/cerberus/03.webp"/></a><a class="carousel-slide" href="https://unknown07ps.github.io/assets/projects/cerberus/04.webp" rel="noopener" target="_blank"><img alt="Cerberus screenshot 4" loading="lazy" src="https://unknown07ps.github.io/assets/projects/cerberus/04.webp"/></a></div></div><button aria-label="Next image" class="carousel-btn next" type="button">›</button><div class="carousel-dots"><button aria-label="Image 1" class="carousel-dot active" type="button"></button><button aria-label="Image 2" class="carousel-dot" type="button"></button><button aria-label="Image 3" class="carousel-dot" type="button"></button><button aria-label="Image 4" class="carousel-dot" type="button"></button></div></div><p>AI code-review agent that runs security and logic agents in parallel, injects codebase-specific RAG context, and supports GitHub webhooks, CLI usage, Redis caching and Prometheus metrics.</p><div class="stack">PYTHON · FASTAPI · CLAUDE · LANGCHAIN · CHROMADB · REDIS · DOCKER</div><a class="link" href="https://github.com/unknown07ps/cerberus" target="_blank" rel="noopener">View repository ↗</a></article><article class="card" data-tags="ai"><div class="card-head"><span class="num">07</span><span class="tag">MULTI-AGENT · LANGGRAPH</span></div><h3>Vulcan Workflow Engine</h3><div aria-label="Vulcan Workflow Engine screenshots" class="project-gallery vulcan-gallery"><a href="https://unknown07ps.github.io/assets/projects/vulcan/vulcan_01_submit-task.png" rel="noopener" target="_blank"><img alt="Vulcan workflow task submission interface" loading="lazy" src="https://unknown07ps.github.io/assets/projects/vulcan/vulcan_01_submit-task.png"/></a><a href="https://unknown07ps.github.io/assets/projects/vulcan/vulcan_02_completed-run-full-trace.png" rel="noopener" target="_blank"><img alt="Vulcan completed workflow run with full execution trace" loading="lazy" src="https://unknown07ps.github.io/assets/projects/vulcan/vulcan_02_completed-run-full-trace.png"/></a></div><p>Multi-agent workflow engine with Planner, Researcher, Formatter and Critic agents, revision loops, Redis-backed task state, execution traces and a FastAPI API.</p><div class="stack">LANGGRAPH · FASTAPI · REDIS · CLAUDE · PYDANTIC · PYTEST</div><a class="link" href="https://github.com/unknown07ps/vulcan-agent-workflow-engine" target="_blank" rel="noopener">View repository ↗</a></article>
 <article class="card wide" data-tags="devops ai"><div class="card-head"><span class="num">08</span><span class="tag">SRE · LOCAL LLM</span></div><h3>AI DevOps Autopilot</h3><div aria-label="AI DevOps Autopilot project screenshots" class="project-gallery"><a href="https://unknown07ps.github.io/assets/projects/deployrops/overview.png" rel="noopener" target="_blank"><img alt="DeployrOps system health overview" loading="lazy" src="https://unknown07ps.github.io/assets/projects/deployrops/overview.png"/></a><a href="https://unknown07ps.github.io/assets/projects/deployrops/topology.png" rel="noopener" target="_blank"><img alt="DeployrOps system topology" loading="lazy" src="https://unknown07ps.github.io/assets/projects/deployrops/topology.png"/></a><a href="https://unknown07ps.github.io/assets/projects/deployrops/ai-assistant.png" rel="noopener" target="_blank"><img alt="DeployrOps AI assistant" loading="lazy" src="https://unknown07ps.github.io/assets/projects/deployrops/ai-assistant.png"/></a></div><p>Autonomous SRE prototype that detects metric anomalies, correlates logs and deployments, performs AI root-cause analysis with a local LLM and sends incident alerts to Slack.</p><div class="stack">PYTHON · FASTAPI · REDIS · OLLAMA · DOCKER · SLACK</div><a class="link" href="https://github.com/unknown07ps/ai-devops-autopilot" target="_blank" rel="noopener">View repository ↗</a></article>
 </div></section>
+<section class="section" id="dsa"><div class="section-title"><div><div class="eyebrow">PROBLEM SOLVING</div><h2>Data Structures and Algorithms</h2></div><p>A snapshot of my practice and progress across LeetCode and GeeksforGeeks.</p></div><div class="dsa-cards"><a class="dsa-card dsa-leetcode" href="https://leetcode.com/Sagar_Prajapati1374/" target="_blank" rel="noopener" aria-label="Open Sagar Prajapati LeetCode profile"><img src="https://leetcard.jacoblin.cool/Sagar_Prajapati1374?theme=dark&amp;ext=heatmap" alt="LeetCode profile stats with submission heatmap" loading="lazy"/><span class="link">LeetCode profile ↗</span></a><article class="dsa-card dsa-gfg"><a href="https://www.geeksforgeeks.org/user/sagarprajahozi/" target="_blank" rel="noopener"><div class="gfg-name">sagarprajahozi</div><div class="gfg-sub">GeeksforGeeks profile ↗</div></a><div class="dsa-heatmap"><img src="public/images/provided-progress-heatmap.png" alt="Provided activity heatmap showing 354 submissions in 2025" loading="lazy"/></div><div class="dsa-stats"><div class="dsa-stat"><strong>309</strong><span>Problems Solved</span></div><div class="dsa-stat"><strong>1159</strong><span>Coding Score</span></div><div class="dsa-stat"><strong>3</strong><span>Institute Rank</span></div></div></article></div></section>
 <section class="section split" id="experience">
 <div><div class="eyebrow">WORK EXPERIENCE</div><h2>Applied AI.<br/>Real systems.</h2></div>
 <div class="timeline">
@@ -147,17 +182,18 @@ footer{border-top:1px solid #ffffff0d;max-width:var(--max);margin:auto;padding:2
 </div></section>
 <section class="section achievements" id="achievements">
 <div class="section-title"><div><div class="eyebrow">ACHIEVEMENTS</div><h2>Beyond the classroom.</h2></div><p>A dedicated record of academic performance, competitive programming, research and recruitment milestones.</p></div>
+<div class="achievement-tools"><div class="achievement-filters" role="group" aria-label="Filter achievements by category"><button class="achievement-filter active" type="button" data-achievement-filter="all" aria-pressed="true">All <span>10</span></button><button class="achievement-filter" type="button" data-achievement-filter="Academics" aria-pressed="false">Academics</button><button class="achievement-filter" type="button" data-achievement-filter="Research" aria-pressed="false">Research</button><button class="achievement-filter" type="button" data-achievement-filter="Career" aria-pressed="false">Career</button><button class="achievement-filter" type="button" data-achievement-filter="DSA" aria-pressed="false">DSA</button><button class="achievement-filter" type="button" data-achievement-filter="Certifications" aria-pressed="false">Certifications</button><button class="achievement-filter" type="button" data-achievement-filter="Programs" aria-pressed="false">Programs</button></div><div class="achievement-count" aria-live="polite"><span id="achievement-visible-count">10</span> MILESTONES</div></div>
 <div class="achievement-grid">
-<div class="achievement feature"><span class="badge">ACADEMICS · 01</span><strong>Student of the Year — DYPIU</strong><span>2023–24 · University Rank 2 · 9.71 CGPA.</span></div>
-<div class="achievement feature"><span class="badge">ACADEMICS · 02</span><strong>Student of the Year — New Model English High School</strong><span>2019–20 · School Rank 1 · 91.20% in SSC.</span></div>
-<div class="achievement feature"><span class="badge">DSA · 03</span><strong>GeeksforGeeks Institutional Rank 3</strong><span>540+ DSA problems solved in C++.</span></div>
-<div class="achievement feature"><span class="badge">RESEARCH · 04</span><strong>IEEE INSECT 2026 Author — StegIntel</strong><span>Conference paper published through IEEE INSECT 2026.</span></div>
-<div class="achievement feature"><span class="badge">RECRUITMENT · 05</span><strong>4 Pre-Placement Offers (PPOs)</strong><span>Secured four PPOs during the final year of B.Tech.</span></div>
-<div class="achievement feature"><span class="badge">AMAZON · 06</span><strong>Amazon SDE-1 — Advanced to Online Assessment</strong><span>Advanced to the Online Assessment stage through off-campus recruitment.</span></div>
-<div class="achievement"><span class="badge">CERTIFICATION</span><strong>IEEE INSECT 2026 Certificate</strong><span>Research publication / conference credential.</span></div>
-<div class="achievement"><span class="badge">CERTIFICATION</span><strong>CheckRed Digital Defence (CDD)</strong><span>Digital defence certification from CheckRed Security.</span></div>
-<div class="achievement"><span class="badge">WORKSHOPS</span><strong>AWS Cloud Workshop</strong><span>Hands-on cloud learning experience.</span></div>
-<div class="achievement"><span class="badge">DESIGN</span><strong>Google UI/UX Design</strong><span>UI/UX design certification / learning credential.</span></div></div></section>
+<article class="achievement feature" data-achievement="Academics"><span class="achievement-icon" aria-hidden="true">✧</span><span class="badge">ACADEMICS · 01</span><strong>Student of the Year — DYPIU</strong><span>2023–24 · University Rank 2 · 9.71 CGPA.</span></article>
+<article class="achievement feature" data-achievement="Academics"><span class="achievement-icon" aria-hidden="true">★</span><span class="badge">ACADEMICS · 02</span><strong>Student of the Year — New Model English High School</strong><span>2019–20 · School Rank 1 · 91.20% in SSC.</span></article>
+<article class="achievement feature" data-achievement="DSA"><span class="achievement-icon" aria-hidden="true">⌘</span><span class="badge">DSA · 03</span><strong>GeeksforGeeks Institutional Rank 3</strong><span>540+ DSA problems solved in C++.</span></article>
+<article class="achievement feature" data-achievement="Research"><span class="achievement-icon" aria-hidden="true">⌬</span><span class="badge">RESEARCH · 04</span><strong>IEEE INSECT 2026 Author — StegIntel</strong><span>Conference paper published through IEEE INSECT 2026.</span></article>
+<article class="achievement feature" data-achievement="Career"><span class="achievement-icon" aria-hidden="true">↗</span><span class="badge">RECRUITMENT · 05</span><strong>4 Pre-Placement Offers (PPOs)</strong><span>Secured four PPOs during the final year of B.Tech.</span></article>
+<article class="achievement feature" data-achievement="Career"><span class="achievement-icon" aria-hidden="true">◈</span><span class="badge">AMAZON · 06</span><strong>Amazon SDE-1 — Advanced to Online Assessment</strong><span>Advanced to the Online Assessment stage through off-campus recruitment.</span></article>
+<article class="achievement" data-achievement="Certifications"><span class="achievement-icon" aria-hidden="true">✦</span><span class="badge">CERTIFICATION</span><strong>IEEE INSECT 2026 Certificate</strong><span>Research publication / conference credential.</span></article>
+<article class="achievement" data-achievement="Certifications"><span class="achievement-icon" aria-hidden="true">⬡</span><span class="badge">CERTIFICATION</span><strong>CheckRed Digital Defence (CDD)</strong><span>Digital defence certification from CheckRed Security.</span></article>
+<article class="achievement" data-achievement="Programs"><span class="achievement-icon" aria-hidden="true">⌘</span><span class="badge">WORKSHOPS</span><strong>AWS Cloud Workshop</strong><span>Hands-on cloud learning experience.</span></article>
+<article class="achievement" data-achievement="Programs"><span class="achievement-icon" aria-hidden="true">◉</span><span class="badge">DESIGN</span><strong>Google UI/UX Design</strong><span>UI/UX design certification / learning credential.</span></article></div></section>
 <section class="section split" id="education">
 <div><div class="eyebrow">EDUCATION</div><h2>Computer Science<br/>× AI &amp; ML.</h2></div>
 <div class="timeline">
@@ -167,18 +203,32 @@ footer{border-top:1px solid #ffffff0d;max-width:var(--max);margin:auto;padding:2
 </div></section>
 <section class="section resume-section" id="resume">
 <div class="section-title"><div><div class="eyebrow">RESUME</div><h2>My resume, one click away.</h2></div>
-<p>The latest resume is embedded directly into this portfolio. No separate file is required when viewing this page.</p></div>
+<p>Preview the original two-page resume below, or open it in a new tab.</p></div>
 <div class="resume-box">
-<a class="btn primary" href="SagarPrajapatiResume_2026_Updated.pdf" rel="noopener" target="_blank">Open Resume ↗</a>
-<span>Embedded PDF · Updated September 2026</span>
+<a class="btn primary" href="public/SagarPrajapatiResume_2026_With_Portfolio%20%281%29.pdf" rel="noopener" target="_blank">Open Resume ↗</a>
+<a class="btn secondary" href="public/SagarPrajapatiResume_2026_With_Portfolio%20%281%29.pdf" download>Download PDF ↓</a>
+<span>PDF · Portfolio edition</span>
+</div>
+<div class="resume-pages" aria-label="Resume page previews">
+<figure><a href="public/images/resume/page-1.webp" target="_blank" rel="noopener"><img src="public/images/resume/page-1.webp" alt="Page 1 of Sagar Prajapati's original resume" loading="lazy"/></a><figcaption>PAGE 1 OF 2 ? SELECT TO VIEW FULL SIZE</figcaption></figure>
+<figure><a href="public/images/resume/page-2.webp" target="_blank" rel="noopener"><img src="public/images/resume/page-2.webp" alt="Page 2 of Sagar Prajapati's original resume" loading="lazy"/></a><figcaption>PAGE 2 OF 2 ? SELECT TO VIEW FULL SIZE</figcaption></figure>
 </div>
 </section>
-<section class="section about"><div class="about-copy"><div class="eyebrow">ENGINEERING PROFILE</div><h2>From models to infrastructure.</h2><p>My work spans AI research, production-oriented GenAI systems, backend engineering, distributed systems and Linux/DevOps automation. I enjoy taking an idea from architecture through implementation, testing, observability and deployment.</p><div class="skills"><span>Python</span><span>C++</span><span>C</span><span>Go</span><span>JavaScript</span><span>Bash</span><span>PyTorch</span><span>TensorFlow</span><span>OpenCV</span><span>YOLOv8</span><span>LangChain</span><span>LangGraph</span><span>FAISS</span><span>ChromaDB</span><span>Ollama</span><span>FastAPI</span><span>Node.js</span><span>Redis</span><span>PostgreSQL</span><span>MongoDB</span><span>Docker</span><span>Kubernetes</span><span>Linux</span><span>GitHub Actions</span><span>Prometheus</span><span>Grafana</span></div></div></section>
+<section class="section about"><div class="about-copy"><div class="eyebrow">ENGINEERING PROFILE</div><h2>From models to infrastructure.</h2><p>My work spans AI research, production-oriented GenAI systems, backend engineering, distributed systems and Linux/DevOps automation. I enjoy taking an idea from architecture through implementation, testing, observability and deployment.</p><div class="skills-head"><span>SKILLS TOOLKIT <strong>26</strong></span><button class="skills-toggle" type="button" aria-pressed="false">PAUSE</button></div><div class="skills-window" aria-label="Skills carousel"><div class="skills-track" id="skills-track"></div></div></div></section>
 <section class="section cta"><div class="eyebrow">LET’S BUILD</div><h2>Looking for an engineer who likes<br/><span>both models and systems?</span></h2><div class="buttons" style="justify-content:center"><a class="btn primary" href="mailto:sagarprajapati1374@gmail.com">Email me</a><a class="btn secondary" href="https://github.com/unknown07ps" target="_blank" rel="noopener">GitHub ↗</a><a class="btn secondary" href="#resume">View Resume ↗</a></div></section>
 </main>
 <footer><span>© 2026 Sagar Prajapati</span><span>AI · Systems · Software</span></footer>
 <script>
+const skillLogos=[
+['Python','python','3776AB','Py','LANGUAGES'],['C++','cplusplus','00599C','C++','LANGUAGES'],['C','c','A8B9CC','C','LANGUAGES'],['Go','go','00ADD8','Go','LANGUAGES'],['JavaScript','javascript','F7DF1E','JS','LANGUAGES'],['Bash','gnubash','4EAA25','sh','LANGUAGES'],
+['PyTorch','pytorch','EE4C2C','PT','AI / ML'],['TensorFlow','tensorflow','FF6F00','TF','AI / ML'],['OpenCV','opencv','5C3EE8','CV','AI / ML'],['YOLOv8','ultralytics','111F68','Y8','AI / ML'],['LangChain','langchain','1C3C3C','LC','AI / LLM'],['LangGraph','langgraph','1C3C3C','LG','AI / LLM'],['FAISS','/images/skills/faiss.svg','0668E1','FA','AI / LLM'],['ChromaDB','/images/skills/chromadb.svg','FF6446','Ch','AI / LLM'],['Ollama','ollama','FFFFFF','Ol','AI / LLM'],
+['FastAPI','fastapi','009688','FA','BACKEND'],['Node.js','nodedotjs','5FA04E','Node','BACKEND'],['Redis','redis','FF4438','R','DATA'],['PostgreSQL','postgresql','4169E1','PG','DATA'],['MongoDB','mongodb','47A248','M','DATA'],['Docker','docker','2496ED','D','INFRASTRUCTURE'],['Kubernetes','kubernetes','326CE5','K8s','INFRASTRUCTURE'],['Linux','linux','FCC624','Lx','INFRASTRUCTURE'],['GitHub Actions','githubactions','2088FF','GA','INFRASTRUCTURE'],['Prometheus','prometheus','E6522C','P','OBSERVABILITY'],['Grafana','grafana','F46800','G','OBSERVABILITY']
+];
+const skillCard=([name,slug,color,mark,category])=>`<div class="skill-card" title="${name}"><span class="skill-logo"><img src="${slug.startsWith('/')?'public'+slug:`https://cdn.simpleicons.org/${slug}/${color}`}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.hidden=true;this.nextElementSibling.style.display='block'"><span class="skill-mark">${mark}</span></span><span><span class="skill-name">${name}</span><span class="skill-category">${category}</span></span></div>`;
+const skillsTrack=document.querySelector('#skills-track');
+if(skillsTrack){const cards=skillLogos.map(skillCard).join('');skillsTrack.innerHTML=`<div class="skills-group">${cards}</div><div class="skills-group" aria-hidden="true">${cards}</div>`;const toggle=document.querySelector('.skills-toggle');toggle.addEventListener('click',()=>{const paused=skillsTrack.classList.toggle('is-paused');toggle.setAttribute('aria-pressed',String(paused));toggle.textContent=paused?'PLAY':'PAUSE'})}
 document.querySelectorAll('.filter').forEach(btn=>btn.onclick=()=>{document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));btn.classList.add('active');const f=btn.dataset.filter;document.querySelectorAll('.card').forEach(c=>c.classList.toggle('hidden',f!=='all'&&!c.dataset.tags.split(' ').includes(f)))});
+document.querySelectorAll('[data-achievement-filter]').forEach(btn=>btn.addEventListener('click',()=>{const category=btn.dataset.achievementFilter;let count=0;document.querySelectorAll('[data-achievement]').forEach(card=>{const show=category==='all'||card.dataset.achievement===category;card.hidden=!show;if(show)count++});document.querySelectorAll('[data-achievement-filter]').forEach(filter=>{const active=filter===btn;filter.classList.toggle('active',active);filter.setAttribute('aria-pressed',String(active))});document.querySelector('#achievement-visible-count').textContent=String(count)}));
 document.querySelectorAll('[data-carousel]').forEach(carousel=>{const track=carousel.querySelector('.carousel-track');const slides=[...carousel.querySelectorAll('.carousel-slide')];const dots=[...carousel.querySelectorAll('.carousel-dot')];let i=0;function go(n){i=(n+slides.length)%slides.length;track.style.transform='translateX(-'+(i*100)+'%)';dots.forEach((d,j)=>d.classList.toggle('active',j===i))}carousel.querySelector('.prev').addEventListener('click',()=>go(i-1));carousel.querySelector('.next').addEventListener('click',()=>go(i+1));dots.forEach((d,j)=>d.addEventListener('click',()=>go(j)))});
 </script>
 </body>
