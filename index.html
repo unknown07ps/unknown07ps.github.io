@@ -7,30 +7,42 @@
 <meta content="Sagar Prajapati — AI/ML Engineer and Software Engineer. AI systems, distributed systems, RAG, computer vision and DevOps." name="description"/>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 :root{--bg:#07070a;--panel:rgba(255,255,255,.025);--line:rgba(255,255,255,.1);--text:#f4f4f5;--muted:#a1a1aa;--accent:#c084fc;--accent-2:#22d3ee;--accent-3:#f472b6;--max:1180px}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:#05040a;color:var(--text);font-family:Manrope,Inter,system-ui,sans-serif;line-height:1.6}
 body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:64px 64px;opacity:.3;z-index:-2}
+
+.morph-ready .morph-heading{transform:translateY(36px);transition:transform .82s cubic-bezier(.22,1,.36,1)}
+.morph-ready .morph-card{transform:translateY(38px) scale(.95);transition:transform .82s cubic-bezier(.22,1,.36,1)}
+.morph-ready .morph-heading.morph-visible{transform:none}
+.morph-ready .morph-card.morph-visible{transform:none}
+@keyframes heroHeadingEnter{from{transform:translateY(54px) scale(.95)}to{transform:translateY(0) scale(1)}}
+@keyframes heroPhotoEnter{from{transform:perspective(1000px) translateY(24px) rotateY(-14deg) rotateX(5deg) scale(.9)}to{transform:perspective(1000px) translateY(0) rotateY(0) rotateX(0) scale(1)}}
+.hero h1{animation:heroHeadingEnter .95s cubic-bezier(.22,1,.36,1) .12s both}
+.hero-photo{transform-style:preserve-3d;animation:heroPhotoEnter 1.25s cubic-bezier(.22,1,.36,1) .28s both}
+@media(prefers-reduced-motion:reduce){.morph-ready .morph-heading,.morph-ready .morph-card,.hero h1,.hero-photo{transform:none;transition:none;animation:none}}
 a{color:inherit}
-.nav{position:sticky;top:0;z-index:50;height:72px;border-bottom:1px solid rgba(255,255,255,.07);background:rgba(7,7,10,.76);backdrop-filter:blur(20px)}
-.nav-in{height:100%;max-width:var(--max);margin:auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between}
-.logo{text-decoration:none;font-size:21px;font-weight:800;letter-spacing:-1.5px}
-.logo b{color:var(--accent)}
-.nav-links{display:flex;gap:22px;align-items:center}
-.nav-links a{text-decoration:none;color:#71717a;font-size:12px;transition:.2s}
-.nav-links a:hover{color:#fff}
-.resume-btn{padding:7px 11px!important;border:1px solid var(--line);border-radius:999px;color:#fff!important;background:#ffffff08}
+.nav{position:sticky;top:0;z-index:50;height:78px;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(8,8,10,.94);backdrop-filter:blur(18px)}
+.nav-in{position:relative;height:100%;max-width:var(--max);margin:auto;padding:0 20px;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:24px}
+.logo{display:grid;width:44px;aspect-ratio:1;place-items:center;border:1px solid rgba(255,255,255,.24);border-radius:50%;background:#ffffff08;color:#fff;text-decoration:none;font-size:15px;font-weight:800;letter-spacing:-1.2px;transition:transform .25s,border-color .25s}
+.logo:hover{transform:rotate(-8deg);border-color:#c4b5fd}.logo b{color:var(--accent)}
+.nav-links{justify-self:center;display:flex;gap:clamp(16px,2.2vw,32px);align-items:center;white-space:nowrap}
+.nav-links a{text-decoration:none;color:#a1a1aa;font-size:12px;transition:color .2s}.nav-links a:hover{color:#fff}
+.nav-actions{display:flex;align-items:center;justify-self:end;gap:10px}
+.nav-social{display:grid;width:34px;height:34px;place-items:center;border-radius:50%;color:#a1a1aa;transition:background .2s,color .2s,transform .2s}.nav-social:hover{transform:translateY(-2px);background:#ffffff0c;color:#fff}.nav-social svg{width:17px;height:17px}
+.resume-btn{margin-left:5px;padding:8px 13px!important;border:1px solid var(--line);border-radius:999px;color:#fff!important;background:#ffffff08;font-size:11px!important}.resume-btn:hover{border-color:#c4b5fd66;background:#c4b5fd12}
+.nav-mobile{display:none;justify-self:end}.nav-mobile summary{cursor:pointer;list-style:none;border:1px solid var(--line);border-radius:999px;padding:8px 13px;color:#e4e4e7;font:500 10px "DM Mono",monospace;letter-spacing:.1em}.nav-mobile summary::-webkit-details-marker{display:none}.nav-mobile nav{position:absolute;top:calc(100% + 10px);right:16px;z-index:60;width:min(280px,calc(100vw - 32px));padding:10px;border:1px solid var(--line);border-radius:16px;background:#101014;box-shadow:0 20px 60px #0009}.nav-mobile nav a{display:block;padding:11px 12px;border-radius:9px;color:#d4d4d8;text-decoration:none;font-size:13px}.nav-mobile nav a:hover{background:#ffffff0a;color:#fff}
 .section{max-width:var(--max);margin:auto;padding:110px 20px}
-.hero{min-height:calc(100vh - 72px);display:flex;align-items:center;padding-top:65px}
-.hero-inner{width:100%;display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.55fr);align-items:center;gap:56px}
-.hero-photo{position:relative;width:min(100%,340px);justify-self:end;overflow:hidden;aspect-ratio:3/4;border:1px solid var(--line);border-radius:26px;background:#ffffff08;box-shadow:0 30px 90px -55px #000}
+.hero{min-height:calc(100vh - 78px);display:flex;align-items:center;padding-top:65px}
+.hero-inner{width:100%;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.75fr);align-items:center;gap:42px}
+.hero-photo{position:relative;width:min(100%,390px);justify-self:end;overflow:hidden;aspect-ratio:3/4;border:1px solid var(--line);border-radius:26px;background:#ffffff08;box-shadow:0 30px 90px -55px #000}
 .hero-photo img{width:100%;height:100%;display:block;object-fit:contain;object-position:center;transform:scale(.96)}
 .hero-photo figcaption{position:absolute;inset:auto 0 0;padding:48px 18px 18px;background:linear-gradient(transparent,#000b);color:#ffffffdd;font:500 10px "DM Mono",monospace;letter-spacing:.16em}
 .eyebrow{font:500 10px/1.2 "DM Mono",monospace;letter-spacing:.2em;color:#c4b5fd;margin-bottom:18px}
-.hero h1{font-size:clamp(52px,8vw,118px);line-height:.9;letter-spacing:-.075em;margin:0;max-width:1000px}
-.hero h1 em{font-style:normal;background:linear-gradient(90deg,#c4b5fd,#f5f3ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero h1{font-family:"Space Grotesk",Manrope,system-ui,sans-serif;font-size:clamp(52px,6.1vw,94px);line-height:.94;letter-spacing:-.075em;margin:0;max-width:850px}
+.hero h1 em{display:inline-block;padding-right:.08em;font-style:normal;background:linear-gradient(90deg,#c4b5fd,#f5f3ff);-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero p{font-size:18px;color:var(--muted);max-width:760px;margin:30px 0}
 .buttons{display:flex;gap:10px;flex-wrap:wrap}
 .btn{padding:12px 17px;border-radius:11px;text-decoration:none;font-size:12px;font-weight:700;border:1px solid var(--line);transition:.2s}
@@ -65,12 +77,18 @@ a{color:inherit}
 .project-gallery a:first-child{grid-row:span 2}
 .project-gallery.one-shot a:first-child{grid-row:auto}
 .project-gallery img{width:100%;height:100%;display:block;object-fit:cover;object-position:top left;filter:saturate(1.12) contrast(1.04);transition:.3s}
-.project-gallery a:hover img{transform:scale(1.035)}
+.project-gallery a:hover img,.carousel-slide:hover img{transform:scale(1.16)}
+.project-gallery a:hover,.carousel-slide:hover{position:relative;z-index:2;box-shadow:0 8px 28px #0009}
+.url-shortener-gallery img{object-position:center}
+.project-image-popout{position:fixed;left:50%;top:50%;z-index:100;width:min(58vw,880px);height:min(56vh,560px);padding:12px;border:1px solid #ffffff35;border-radius:18px;background:#09090cf2;box-shadow:0 28px 100px #000c;backdrop-filter:blur(18px);opacity:0;visibility:hidden;pointer-events:none;transform:translate(-50%,-46%) scale(.92);transition:opacity .22s ease,visibility .22s ease,transform .28s cubic-bezier(.22,1,.36,1)}
+.project-image-popout.visible{opacity:1;visibility:visible;transform:translate(-50%,-50%) scale(1)}
+.project-image-popout img{width:100%;height:100%;display:block;border-radius:10px;object-fit:contain;background:#050507}
+@media(max-width:700px){.project-image-popout{width:90vw;height:44vh;padding:8px;border-radius:13px}}
 .project-carousel{position:relative;height:205px;margin-top:20px;padding:7px;overflow:hidden}
 .carousel-viewport{height:100%;overflow:hidden;border-radius:7px}
 .carousel-track{display:flex;height:100%;transition:transform .3s ease}
 .carousel-slide{min-width:100%;height:100%;display:block;background:#0e0e13}
-.carousel-slide img{width:100%;height:100%;display:block;object-fit:cover;object-position:top left;filter:saturate(1.12) contrast(1.04)}
+.carousel-slide img{width:100%;height:100%;display:block;object-fit:cover;object-position:top left;filter:saturate(1.12) contrast(1.04);transition:transform .5s cubic-bezier(.22,1,.36,1)}
 .carousel-btn{position:absolute;z-index:3;top:50%;transform:translateY(-50%);width:35px;height:35px;border:1px solid #ffffff33;border-radius:50%;background:#07070ad9;color:#fff;font-size:24px;line-height:1;cursor:pointer}
 .carousel-btn.prev{left:14px}
 .carousel-btn.next{right:14px}
@@ -129,23 +147,32 @@ a{color:inherit}
 .skill-mark{display:none;color:#ddd2ff;font:700 10px "DM Mono",monospace}
 .skill-name{display:block;overflow:hidden;color:#e4e4e7;font-size:11px;font-weight:700;text-overflow:ellipsis;white-space:nowrap}
 .skill-category{display:block;margin-top:3px;color:#71717a;font:400 8px "DM Mono",monospace;letter-spacing:.08em}
-.resume-pages{display:grid;gap:18px;margin-top:24px}.resume-pages figure{overflow:hidden;margin:0;border:1px solid #ffffff1a;border-radius:18px;background:#fff;box-shadow:0 22px 65px -45px #000}.resume-pages a{display:block}.resume-pages img{display:block;width:100%;height:auto}.resume-pages figcaption{padding:11px 14px;background:#111;color:#a1a1aa;text-align:center;font:400 9px "DM Mono",monospace;letter-spacing:.12em}
+.resume-pages{display:block;margin-top:24px}.resume-pages figure{position:relative;width:100%;aspect-ratio:1041/900;overflow:hidden;margin:0;border:1px solid #ffffff1a;border-radius:18px;background:#fff;box-shadow:0 22px 65px -45px #000}.resume-pages a{position:absolute;inset:0;display:block;overflow:hidden}.resume-pages img{display:block;width:100%;height:auto;max-width:none}.resume-pages a:after{content:"";position:absolute;inset:65% 0 0;background:linear-gradient(transparent,rgba(7,7,10,.88))}.resume-pages figcaption{position:absolute;right:0;bottom:0;left:0;z-index:1;padding:18px 20px;color:#fff;text-align:center;font:500 10px "DM Mono",monospace;letter-spacing:.12em}
 @keyframes skills-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media(prefers-reduced-motion:reduce){.skills-track{animation:none}.skills-window{overflow-x:auto;mask-image:none}}
 .cta{text-align:center}
 .cta h2{font-size:clamp(38px,5vw,64px);line-height:1;letter-spacing:-.06em;margin:0 0 30px}
 .cta h2 span{color:#c4b5fd}
 footer{border-top:1px solid #ffffff0d;max-width:var(--max);margin:auto;padding:28px 20px 38px;display:flex;justify-content:space-between;color:#52525b;font:400 9px "DM Mono",monospace}
-@media(max-width:800px){.nav-links a:nth-child(-n+4){display:none}.section{padding:78px 16px}.hero h1{font-size:56px}.hero-inner{grid-template-columns:1fr;gap:38px}.hero-photo{width:min(78%,320px);justify-self:center}.section-title{display:block}.filters{margin-top:24px}.grid,.achievement-grid{grid-template-columns:1fr}.achievement-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.card.featured,.card.wide{grid-column:span 1}.split{display:block}.timeline{margin-top:45px}.nav-in{padding:0 16px}.project-gallery{grid-template-rows:100px 100px}.dsa-cards{grid-template-columns:1fr}.card h3{font-size:23px}}
+@media(max-width:940px){.nav-in{grid-template-columns:1fr auto auto;padding:0 16px}.nav-links,.nav-actions{display:none}.nav-mobile{display:block}}
+@media(max-width:800px){.section{padding:78px 16px}.hero h1{font-size:clamp(42px,8vw,64px)}.hero-inner{grid-template-columns:1fr;gap:38px}.hero-photo{width:min(78%,320px);justify-self:center}.section-title{display:block}.filters{margin-top:24px}.grid,.achievement-grid{grid-template-columns:1fr}.achievement-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.card.featured,.card.wide{grid-column:span 1}.split{display:block}.timeline{margin-top:45px}.nav-in{padding:0 16px}.project-gallery{grid-template-rows:100px 100px}.dsa-cards{grid-template-columns:1fr}.card h3{font-size:23px}}
 @media(max-width:520px){.achievement-grid{grid-template-columns:1fr}.achievement{min-height:0}}
 </style>
 </head>
 <body>
-<header class="nav"><div class="nav-in"><a class="logo" href="#top">SP<b>.</b></a><nav class="nav-links"><a href="#work">Work</a><a href="#experience">Experience</a><a href="#achievements">Achievements</a><a href="#education">Education</a><a href="#dsa">DSA</a><a href="https://github.com/unknown07ps" target="_blank" rel="noopener">GitHub ↗</a><a class="resume-btn" href="#resume">Resume ↗</a></nav></div></header>
+<header class="nav"><div class="nav-in">
+<a class="logo" href="#top" aria-label="Sagar Prajapati home">SP<b>.</b></a>
+<nav class="nav-links" aria-label="Main navigation"><a href="#about">About</a><a href="#work">Work</a><a href="#dsa">DSA</a><a href="#experience">Experience</a><a href="#achievements">Achievements</a><a href="#contact">Contact</a></nav>
+<div class="nav-actions"><a class="nav-social" href="https://github.com/unknown07ps" target="_blank" rel="noopener" aria-label="GitHub profile" title="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.55.1.76-.24.76-.53v-2.07c-3.1.68-3.76-1.32-3.76-1.32-.5-1.3-1.24-1.64-1.24-1.64-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15 1 1.71 2.62 1.22 3.26.93.1-.72.39-1.22.71-1.5-2.47-.28-5.06-1.24-5.06-5.51 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.42.11-2.96 0 0 .94-.3 3.06 1.15a10.7 10.7 0 0 1 5.57 0c2.12-1.45 3.06-1.15 3.06-1.15.61 1.54.23 2.68.11 2.96.72.78 1.15 1.78 1.15 3 0 4.28-2.59 5.22-5.07 5.5.4.35.76 1.03.76 2.08V22c0 .29.2.63.77.52A11.1 11.1 0 0 0 12 .9Z"/></svg></a>
+<a class="nav-social" href="https://www.linkedin.com/in/sagar-prajapati-7b99822b4/" target="_blank" rel="noopener" aria-label="LinkedIn profile" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.2 3.5a2.2 2.2 0 1 1-4.4 0 2.2 2.2 0 0 1 4.4 0ZM1.2 8h3.7v14H1.2Zm6 0h3.6v1.9h.1a4 4 0 0 1 3.6-2.2c3.9 0 4.6 2.5 4.6 5.8V22h-3.8v-7.5c0-1.8 0-4-2.4-4s-2.8 1.9-2.8 3.9V22H7.2Z"/></svg></a>
+<a class="nav-social" href="mailto:sagarprajapati1374@gmail.com" aria-label="Email Sagar" title="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></a>
+<a class="resume-btn" href="#resume">Resume</a></div>
+<details class="nav-mobile"><summary>MENU</summary><nav aria-label="Mobile navigation"><a href="#about">About</a><a href="#work">Work</a><a href="#dsa">DSA</a><a href="#experience">Experience</a><a href="#achievements">Achievements</a><a href="#contact">Contact</a><a href="https://github.com/unknown07ps" target="_blank" rel="noopener">GitHub</a><a href="https://www.linkedin.com/in/sagar-prajapati-7b99822b4/" target="_blank" rel="noopener">LinkedIn</a><a href="#resume">Resume</a></nav></details>
+</div></header>
 <main id="top">
 <section class="section hero"><div class="hero-inner"><div class="hero-copy">
 <div class="eyebrow">AI/ML ENGINEER · SOFTWARE ENGINEER</div>
-<h1>Building systems that<br/><em>actually do something.</em></h1>
+<h1>I make it work on <em>everybody’s machine.</em></h1>
 <p>I'm Sagar Prajapati, an AI/ML Engineer with hands-on experience across deep learning, computer vision, RAG, LLM applications, backend engineering, distributed systems and DevOps.</p>
 <div class="buttons"><a class="btn primary" href="#work">Explore my work ↓</a><a class="btn secondary" href="mailto:sagarprajapati1374@gmail.com">Get in touch</a></div>
 <div class="meta"><span>INDIA</span><span>B.TECH CSE — AI &amp; ML</span><span>GPA 8.9/10</span><span>IEEE CONFERENCE AUTHOR</span></div>
@@ -156,7 +183,7 @@ footer{border-top:1px solid #ffffff0d;max-width:var(--max);margin:auto;padding:2
 <article class="card featured" data-tags="systems"><div class="card-head"><span class="num">01 · RESUME PROJECT</span><span class="tag">GO · DISTRIBUTED SYSTEMS</span></div><h3>Madonna / DistKV</h3><p>Production-grade distributed key-value store built from scratch in Go with WAL-backed persistence, consistent hashing, gossip-based failure detection and asynchronous replication.</p><div class="arch">CLIENT → HTTP → HASH RING (150 VIRTUAL NODES) → WAL + MEMORY → ASYNC REPLICATION</div><div aria-label="Madonna distributed key-value store monitor screenshots" class="project-gallery two-shot"><a href="https://unknown07ps.github.io/assets/projects/madonna/overview.png" rel="noopener" target="_blank"><img alt="Madonna cluster monitor overview" loading="lazy" src="https://unknown07ps.github.io/assets/projects/madonna/overview.png"/></a><a href="https://unknown07ps.github.io/assets/projects/madonna/operations.png" rel="noopener" target="_blank"><img alt="Madonna operation log and key inspection dashboard" loading="lazy" src="https://unknown07ps.github.io/assets/projects/madonna/operations.png"/></a></div><div class="stack">GO · DOCKER · SHA-256 · WAL · GOSSIP · CONSISTENT HASHING</div><a class="link" href="https://github.com/unknown07ps/madonna" target="_blank" rel="noopener">View repository ↗</a></article>
 <article class="card" data-tags="vision"><div class="card-head"><span class="num">02 · RESUME PROJECT</span><span class="tag">COMPUTER VISION</span></div><h3>AI Exam Proctoring System</h3><p>Deep-learning monitoring system for real-time chit detection and suspicious behavior tracking. The work evolved through CNN/YOLO-based detection, multi-person tracking and automated annotation.</p><div aria-label="AI Exam Proctoring System visual" class="project-gallery one-shot"><a href="https://unknown07ps.github.io/assets/projects/proctoring/ai-proctoring.webp" rel="noopener" target="_blank"><img alt="AI Exam Proctoring System visual" loading="eager" src="https://unknown07ps.github.io/assets/projects/proctoring/ai-proctoring.webp"/></a></div><div class="stack">PYTHON · PYTORCH · YOLOv8 · OPENCV · ROBOFLOW</div><a class="link" href="https://github.com/unknown07ps/AI-Proctoring-System-YoloV8" target="_blank" rel="noopener">View repository ↗</a></article>
 <article class="card" data-tags="ai"><div class="card-head"><span class="num">03 · RESUME PROJECT</span><span class="tag">RAG · LOCAL AI</span></div><h3>Athena — AI Research Assistant</h3><div aria-label="Athena project screenshots" class="project-gallery"><a href="https://unknown07ps.github.io/assets/projects/athena/overview.png" rel="noopener" target="_blank"><img alt="Athena research assistant overview" loading="lazy" src="https://unknown07ps.github.io/assets/projects/athena/overview.png"/></a><a href="https://unknown07ps.github.io/assets/projects/athena/chat.png" rel="noopener" target="_blank"><img alt="Athena chat interface" loading="lazy" src="https://unknown07ps.github.io/assets/projects/athena/chat.png"/></a><a href="https://unknown07ps.github.io/assets/projects/athena/comparison.png" rel="noopener" target="_blank"><img alt="Athena document comparison interface" loading="lazy" src="https://unknown07ps.github.io/assets/projects/athena/comparison.png"/></a></div><p>AI assistant for research-paper analysis and contextual Q&amp;A, with RAG using FAISS and Sentence Transformers plus Summary, Q&amp;A, Semantic Search and Chat modes through Streamlit.</p><div class="stack">PYTHON · LANGCHAIN · OLLAMA · LLAMA 3 · FAISS · STREAMLIT</div><a class="link" href="https://github.com/unknown07ps/Athena" target="_blank" rel="noopener">View repository ↗</a></article>
-<article class="card" data-tags="systems"><div class="card-head"><span class="num">04 · RESUME PROJECT</span><span class="tag">BACKEND · CACHING</span></div><h3>URL Shortener API Service</h3><div aria-label="URL Shortener project screenshots" class="project-gallery"><a href="https://unknown07ps.github.io/assets/projects/url-shortener/home.png" rel="noopener" target="_blank"><img alt="URL shortener dashboard" loading="lazy" src="https://unknown07ps.github.io/assets/projects/url-shortener/home.png"/></a><a href="https://unknown07ps.github.io/assets/projects/url-shortener/create.png" rel="noopener" target="_blank"><img alt="URL shortener creation interface" loading="lazy" src="https://unknown07ps.github.io/assets/projects/url-shortener/create.png"/></a><a href="https://unknown07ps.github.io/assets/projects/url-shortener/analytics.png" rel="noopener" target="_blank"><img alt="URL shortener analytics interface" loading="lazy" src="https://unknown07ps.github.io/assets/projects/url-shortener/analytics.png"/></a></div><p>Scalable backend for URL shortening with Redis caching and rate limiting. The resume project achieved a reported 45% reduction in redirect latency and 3× higher throughput through Redis-based rate limiting.</p><div class="stack">NODE.JS · EXPRESS · MONGODB · REDIS · REST API</div><a class="link" href="https://github.com/unknown07ps/URL-shortner" target="_blank" rel="noopener">View repository ↗</a></article>
+<article class="card" data-tags="systems"><div class="card-head"><span class="num">04 · RESUME PROJECT</span><span class="tag">BACKEND · CACHING</span></div><h3>URL Shortener API Service</h3><div aria-label="URL Shortener project screenshots" class="project-gallery url-shortener-gallery"><a href="https://unknown07ps.github.io/assets/projects/url-shortener/home.png" rel="noopener" target="_blank"><img alt="URL shortener dashboard" loading="lazy" src="https://unknown07ps.github.io/assets/projects/url-shortener/home.png"/></a><a href="https://unknown07ps.github.io/assets/projects/url-shortener/create.png" rel="noopener" target="_blank"><img alt="URL shortener creation interface" loading="lazy" src="https://unknown07ps.github.io/assets/projects/url-shortener/create.png"/></a><a href="https://unknown07ps.github.io/assets/projects/url-shortener/analytics.png" rel="noopener" target="_blank"><img alt="URL shortener analytics interface" loading="lazy" src="https://unknown07ps.github.io/assets/projects/url-shortener/analytics.png"/></a></div><p>Scalable backend for URL shortening with Redis caching and rate limiting. The resume project achieved a reported 45% reduction in redirect latency and 3× higher throughput through Redis-based rate limiting.</p><div class="stack">NODE.JS · EXPRESS · MONGODB · REDIS · REST API</div><a class="link" href="https://github.com/unknown07ps/URL-shortner" target="_blank" rel="noopener">View repository ↗</a></article>
 <article class="card" data-tags="ai"><div class="card-head"><span class="num">05</span><span class="tag">RAG · OBSERVABILITY</span></div><h3>Medusa RAG</h3><p>Production-oriented RAG API with two-level retrieval fallback, prompt versioning, Redis caching, PostgreSQL tracing, Prometheus metrics, Grafana dashboards and switchable FAISS/ChromaDB stores.</p><div aria-label="Medusa RAG dashboard screenshots" class="project-carousel" data-carousel="">
 <button aria-label="Previous image" class="carousel-btn prev" type="button">‹</button>
 <div class="carousel-viewport"><div class="carousel-track">
@@ -209,16 +236,27 @@ footer{border-top:1px solid #ffffff0d;max-width:var(--max);margin:auto;padding:2
 <a class="btn secondary" href="public/SagarPrajapatiResume_2026_With_Portfolio%20%281%29.pdf" download>Download PDF ↓</a>
 <span>PDF · Portfolio edition</span>
 </div>
-<div class="resume-pages" aria-label="Resume page previews">
-<figure><a href="public/images/resume/page-1.webp" target="_blank" rel="noopener"><img src="public/images/resume/page-1.webp" alt="Page 1 of Sagar Prajapati's original resume" loading="lazy"/></a><figcaption>PAGE 1 OF 2 ? SELECT TO VIEW FULL SIZE</figcaption></figure>
-<figure><a href="public/images/resume/page-2.webp" target="_blank" rel="noopener"><img src="public/images/resume/page-2.webp" alt="Page 2 of Sagar Prajapati's original resume" loading="lazy"/></a><figcaption>PAGE 2 OF 2 ? SELECT TO VIEW FULL SIZE</figcaption></figure>
+<div class="resume-pages" aria-label="Resume first-page preview">
+<figure><a href="public/SagarPrajapatiResume_2026_With_Portfolio%20%281%29.pdf" target="_blank" rel="noopener" aria-label="Open Sagar Prajapati's full two-page resume"><img src="public/images/resume/page-1.webp" alt="Resume preview, showing the first two-thirds of page one" loading="lazy"/><figcaption>CLICK TO VIEW THE FULL TWO-PAGE RESUME ?</figcaption></a></figure>
 </div>
 </section>
-<section class="section about"><div class="about-copy"><div class="eyebrow">ENGINEERING PROFILE</div><h2>From models to infrastructure.</h2><p>My work spans AI research, production-oriented GenAI systems, backend engineering, distributed systems and Linux/DevOps automation. I enjoy taking an idea from architecture through implementation, testing, observability and deployment.</p><div class="skills-head"><span>SKILLS TOOLKIT <strong>26</strong></span><button class="skills-toggle" type="button" aria-pressed="false">PAUSE</button></div><div class="skills-window" aria-label="Skills carousel"><div class="skills-track" id="skills-track"></div></div></div></section>
-<section class="section cta"><div class="eyebrow">LET’S BUILD</div><h2>Looking for an engineer who likes<br/><span>both models and systems?</span></h2><div class="buttons" style="justify-content:center"><a class="btn primary" href="mailto:sagarprajapati1374@gmail.com">Email me</a><a class="btn secondary" href="https://github.com/unknown07ps" target="_blank" rel="noopener">GitHub ↗</a><a class="btn secondary" href="#resume">View Resume ↗</a></div></section>
+<section class="section about" id="about"><div class="about-copy"><div class="eyebrow">ENGINEERING PROFILE</div><h2>From models to infrastructure.</h2><p>My work spans AI research, production-oriented GenAI systems, backend engineering, distributed systems and Linux/DevOps automation. I enjoy taking an idea from architecture through implementation, testing, observability and deployment.</p><div class="skills-head"><span>SKILLS TOOLKIT <strong>26</strong></span><button class="skills-toggle" type="button" aria-pressed="false">PAUSE</button></div><div class="skills-window" aria-label="Skills carousel"><div class="skills-track" id="skills-track"></div></div></div></section>
+<section class="section cta" id="contact"><div class="eyebrow">LET’S BUILD</div><h2>Looking for an engineer who likes<br/><span>both models and systems?</span></h2><div class="buttons" style="justify-content:center"><a class="btn primary" href="mailto:sagarprajapati1374@gmail.com">Email me</a><a class="btn secondary" href="https://github.com/unknown07ps" target="_blank" rel="noopener">GitHub ↗</a><a class="btn secondary" href="#resume">View Resume ↗</a></div></section>
 </main>
 <footer><span>© 2026 Sagar Prajapati</span><span>AI · Systems · Software</span></footer>
 <script>
+document.querySelectorAll('.nav-mobile nav a[href^=\"#\"]').forEach(link=>link.addEventListener('click',()=>link.closest('details').removeAttribute('open')));
+const projectPreview=document.createElement('div');projectPreview.className='project-image-popout';projectPreview.setAttribute('aria-hidden','true');projectPreview.innerHTML='<img alt="" src="">';document.body.appendChild(projectPreview);
+const projectPreviewImage=projectPreview.querySelector('img');
+let projectPreviewTimer=null;
+document.querySelectorAll('.project-gallery a,.project-carousel .carousel-slide').forEach(link=>{const show=()=>{const img=link.querySelector('img');if(!img)return;projectPreviewImage.src=img.currentSrc||img.src;projectPreviewImage.alt=img.alt;projectPreview.classList.add('visible')};const hide=()=>{clearTimeout(projectPreviewTimer);projectPreview.classList.remove('visible')};link.addEventListener('mouseenter',()=>{clearTimeout(projectPreviewTimer);projectPreviewTimer=setTimeout(show,550)});link.addEventListener('mouseleave',hide);link.addEventListener('focus',show);link.addEventListener('blur',hide)});
+if('IntersectionObserver' in window){
+  const morphTargets=[...document.querySelectorAll('.section-title h2,.about h2,.split h2,.cta h2,.hero h1,.hero-photo,.card,.achievement,.dsa-card,.resume-pages figure,.timeline article')];
+  morphTargets.forEach(target=>target.classList.add(target.matches('h2')?'morph-heading':'morph-card'));
+  document.documentElement.classList.add('morph-ready');
+  const morphObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('morph-visible');morphObserver.unobserve(entry.target)}}),{threshold:.12,rootMargin:'0px 0px -4% 0px'});
+  morphTargets.forEach(target=>morphObserver.observe(target));
+}
 const skillLogos=[
 ['Python','python','3776AB','Py','LANGUAGES'],['C++','cplusplus','00599C','C++','LANGUAGES'],['C','c','A8B9CC','C','LANGUAGES'],['Go','go','00ADD8','Go','LANGUAGES'],['JavaScript','javascript','F7DF1E','JS','LANGUAGES'],['Bash','gnubash','4EAA25','sh','LANGUAGES'],
 ['PyTorch','pytorch','EE4C2C','PT','AI / ML'],['TensorFlow','tensorflow','FF6F00','TF','AI / ML'],['OpenCV','opencv','5C3EE8','CV','AI / ML'],['YOLOv8','ultralytics','111F68','Y8','AI / ML'],['LangChain','langchain','1C3C3C','LC','AI / LLM'],['LangGraph','langgraph','1C3C3C','LG','AI / LLM'],['FAISS','/images/skills/faiss.svg','0668E1','FA','AI / LLM'],['ChromaDB','/images/skills/chromadb.svg','FF6446','Ch','AI / LLM'],['Ollama','ollama','FFFFFF','Ol','AI / LLM'],
@@ -233,3 +271,14 @@ document.querySelectorAll('[data-carousel]').forEach(carousel=>{const track=caro
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+

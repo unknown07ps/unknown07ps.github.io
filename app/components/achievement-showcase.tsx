@@ -34,7 +34,7 @@ export function AchievementShowcase() {
       <AnimatePresence mode="popLayout">
         {visible.map((item, i) => {
           const Icon = item.icon;
-          return <motion.article key={item.title} layout initial={{ opacity: 0, y: 14, scale: .98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: -8, scale: .98 }} transition={{ duration: .22, delay: i * .025 }} style={{ backgroundImage: `${item.featured ? "linear-gradient(145deg,rgba(167,139,250,.08),rgba(255,255,255,.02) 60%,transparent)," : ""}url('/images/achievement-clipart.svg')`, backgroundRepeat: item.featured ? "no-repeat,no-repeat" : "no-repeat", backgroundPosition: item.featured ? "center,right -20px bottom -24px" : "right -20px bottom -24px", backgroundSize: item.featured ? "cover,160px auto" : "160px auto" }} className={`group relative min-h-48 overflow-hidden rounded-2xl border p-5 ${item.featured ? "border-violet-300/15" : "border-white/10"}`}>
+          return <motion.article key={item.title} layout initial={{ y: 24, scale: .96, borderRadius: 30 }} animate={{ y: 0, scale: 1, borderRadius: 16 }} exit={{ y: -10, scale: .97 }} transition={{ duration: .62, delay: i * .035, ease: [.22, 1, .36, 1] }} style={{ backgroundImage: `${item.featured ? "linear-gradient(145deg,rgba(167,139,250,.08),rgba(255,255,255,.02) 60%,transparent)," : ""}url('/images/achievement-clipart.svg')`, backgroundRepeat: item.featured ? "no-repeat,no-repeat" : "no-repeat", backgroundPosition: item.featured ? "center,right -20px bottom -24px" : "right -20px bottom -24px", backgroundSize: item.featured ? "cover,160px auto" : "160px auto" }} className={`group relative min-h-48 overflow-hidden rounded-2xl border p-5 ${item.featured ? "border-violet-300/15" : "border-white/10"}`}>
             <div className="relative flex h-full flex-col">
               <div className="mb-7 flex items-center justify-between"><span className="font-mono text-[10px] tracking-[.12em] text-violet-200 transition-[text-shadow,color] duration-200 group-hover:text-white group-hover:[text-shadow:0_0_12px_rgba(196,181,253,.85)] group-active:text-white group-active:[text-shadow:0_0_12px_rgba(196,181,253,.85)]">{item.label}</span><span className="grid h-9 w-9 place-items-center rounded-xl border border-white/10 bg-black/20 text-zinc-400"><Icon size={16}/></span></div>
               <h3 className="text-base font-semibold leading-snug text-white [text-shadow:0_1px_2px_rgba(0,0,0,.9)] transition-[text-shadow] duration-200 group-hover:[text-shadow:0_0_8px_rgba(196,181,253,.65),0_0_20px_rgba(167,139,250,.45)] group-active:[text-shadow:0_0_8px_rgba(196,181,253,.65),0_0_20px_rgba(167,139,250,.45)]">{item.title}</h3>
@@ -47,3 +47,5 @@ export function AchievementShowcase() {
     <div className="mt-5 flex items-center gap-2 text-xs text-zinc-600"><BookOpen size={13}/>A few milestones from my academic, research and engineering journey.</div>
   </div>;
 }
+
+
