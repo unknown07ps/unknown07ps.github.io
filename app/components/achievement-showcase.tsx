@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, type CSSProperties } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { BookOpen, BriefcaseBusiness, Code2, FlaskConical, GraduationCap, Medal, Palette, Presentation, ShieldCheck, Sparkles, Trophy } from "lucide-react";
 
@@ -18,6 +18,14 @@ const achievements = [
 ];
 
 const filters = ["All", "Academics", "Research", "Career", "DSA", "Certifications", "Programs"];
+const achievementThemes: Record<string, { accent: string; tint: string; glow: string; border: string }> = {
+  Academics: { accent: "#ffd166", tint: "rgba(255,190,60,.16)", glow: "rgba(255,190,60,.48)", border: "rgba(255,209,102,.5)" },
+  DSA: { accent: "#6ee7a2", tint: "rgba(34,197,94,.15)", glow: "rgba(34,197,94,.48)", border: "rgba(110,231,162,.48)" },
+  Research: { accent: "#7dd3fc", tint: "rgba(14,165,233,.16)", glow: "rgba(56,189,248,.48)", border: "rgba(125,211,252,.5)" },
+  Career: { accent: "#c4b5fd", tint: "rgba(139,92,246,.18)", glow: "rgba(167,139,250,.5)", border: "rgba(196,181,253,.5)" },
+  Certifications: { accent: "#f9a8d4", tint: "rgba(236,72,153,.16)", glow: "rgba(244,114,182,.48)", border: "rgba(249,168,212,.5)" },
+  Programs: { accent: "#fdba74", tint: "rgba(249,115,22,.16)", glow: "rgba(251,146,60,.48)", border: "rgba(253,186,116,.5)" },
+};
 
 export function AchievementShowcase() {
   const [active, setActive] = useState("All");
@@ -34,11 +42,13 @@ export function AchievementShowcase() {
       <AnimatePresence mode="popLayout">
         {visible.map((item, i) => {
           const Icon = item.icon;
-          return <motion.article key={item.title} layout initial={{ y: 24, scale: .96, borderRadius: 30 }} animate={{ y: 0, scale: 1, borderRadius: 16 }} exit={{ y: -10, scale: .97 }} transition={{ duration: .62, delay: i * .035, ease: [.22, 1, .36, 1] }} style={{ backgroundImage: `${item.featured ? "linear-gradient(145deg,rgba(167,139,250,.08),rgba(255,255,255,.02) 60%,transparent)," : ""}url('/images/achievement-clipart.svg')`, backgroundRepeat: item.featured ? "no-repeat,no-repeat" : "no-repeat", backgroundPosition: item.featured ? "center,right -20px bottom -24px" : "right -20px bottom -24px", backgroundSize: item.featured ? "cover,160px auto" : "160px auto" }} className={`group relative min-h-48 overflow-hidden rounded-2xl border p-5 ${item.featured ? "border-violet-300/15" : "border-white/10"}`}>
-            <div className="relative flex h-full flex-col">
-              <div className="mb-7 flex items-center justify-between"><span className="font-mono text-[10px] tracking-[.12em] text-violet-200 transition-[text-shadow,color] duration-200 group-hover:text-white group-hover:[text-shadow:0_0_12px_rgba(196,181,253,.85)] group-active:text-white group-active:[text-shadow:0_0_12px_rgba(196,181,253,.85)]">{item.label}</span><span className="grid h-9 w-9 place-items-center rounded-xl border border-white/10 bg-black/20 text-zinc-400"><Icon size={16}/></span></div>
-              <h3 className="text-base font-semibold leading-snug text-white [text-shadow:0_1px_2px_rgba(0,0,0,.9)] transition-[text-shadow] duration-200 group-hover:[text-shadow:0_0_8px_rgba(196,181,253,.65),0_0_20px_rgba(167,139,250,.45)] group-active:[text-shadow:0_0_8px_rgba(196,181,253,.65),0_0_20px_rgba(167,139,250,.45)]">{item.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-zinc-300 [text-shadow:0_1px_4px_rgba(0,0,0,.95)] transition-[text-shadow,color] duration-200 group-hover:text-violet-50 group-hover:[text-shadow:0_0_8px_rgba(196,181,253,.55),0_0_18px_rgba(167,139,250,.36)] group-active:text-violet-50 group-active:[text-shadow:0_0_8px_rgba(196,181,253,.55),0_0_18px_rgba(167,139,250,.36)]">{item.detail}</p>
+          const theme = achievementThemes[item.category];
+          const cardStyle = { "--achievement-glow": theme.glow, backgroundColor: "#101014", borderColor: theme.border, backgroundImage: `radial-gradient(ellipse at 100% 0%, ${theme.glow}, transparent 64%),linear-gradient(145deg,${theme.tint},rgba(255,255,255,.018) 68%),url('/images/achievement-clipart.svg')`, backgroundRepeat: "no-repeat,no-repeat,no-repeat", backgroundPosition: "center,center,right -20px bottom -24px", backgroundSize: "cover,cover,160px auto" } as CSSProperties;
+          return <motion.article key={item.title} tabIndex={0} layout initial={{ y: 24, scale: .96, borderRadius: 30 }} animate={{ y: 0, scale: 1, borderRadius: 16 }} whileHover={{ y: -7, scale: 1.025, rotateX: 2, rotateY: -2, borderRadius: 22, transition: { duration: .22, delay: 0 } }} whileFocus={{ y: -5, scale: 1.015, borderRadius: 22, transition: { duration: .22, delay: 0 } }} whileTap={{ scale: .985, transition: { duration: .12, delay: 0 } }} exit={{ y: -10, scale: .97 }} transition={{ duration: .62, delay: i * .035, ease: [.22, 1, .36, 1] }} style={{ ...cardStyle, transformPerspective: 900 }} className="achievement-card group relative min-h-48 overflow-hidden rounded-2xl border p-5">
+            <div className="achievement-card-content relative z-10 flex h-full flex-col">
+              <div className="mb-7 flex items-center justify-between"><span style={{ color: theme.accent }} className="font-mono text-[10px] tracking-[.12em] transition-[text-shadow,color] duration-200 group-hover:text-white">{item.label}</span><span style={{ color: theme.accent, borderColor: theme.border, backgroundColor: theme.tint }} className="grid h-9 w-9 place-items-center rounded-xl border transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110 group-active:scale-95"><Icon size={16}/></span></div>
+              <h3 className="text-base font-semibold leading-snug text-white [text-shadow:0_1px_2px_rgba(0,0,0,.9)] transition-[text-shadow] duration-200 group-hover:[text-shadow:0_0_10px_var(--achievement-glow)]">{item.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-zinc-200 [text-shadow:0_1px_4px_rgba(0,0,0,.95)] transition-[text-shadow,color] duration-200 group-hover:text-white group-hover:[text-shadow:0_0_8px_var(--achievement-glow)]">{item.detail}</p>
             </div>
           </motion.article>;
         })}
