@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+:root{color-scheme:dark;--accent:#a855f7;--accent-2:#06b6d4;--accent-3:#ec4899}html{scroll-behavior:auto}body{margin:0;background:#05040a;color:#f8fafc;font-family:Manrope,Inter,system-ui,sans-serif}body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.24;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:64px 64px;mask-image:linear-gradient(to bottom,black,transparent 80%);z-index:-20}.font-mono{font-family:"DM Mono",ui-monospace,SFMono-Regular,monospace}::selection{background:rgba(167,139,250,.35);color:white}a{color:inherit;text-decoration:none}button{font:inherit} .container-main{width:min(1180px,calc(100% - 40px));margin:auto}@media(max-width:640px){.container-main{width:min(100% - 32px,1180px)}}
+
+/* Vibrant project presentation */
+.project-image, .project-gallery img, .project-carousel img { object-position: top left !important; }
+.project-gallery img, .project-carousel img { filter: saturate(1.12) contrast(1.04); }
