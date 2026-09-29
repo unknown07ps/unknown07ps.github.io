@@ -175,6 +175,7 @@ footer{border-top:1px solid #ffffff0d;max-width:var(--max);margin:auto;padding:2
 @media(max-width:800px){.section{padding:78px 16px}.hero h1{font-size:clamp(42px,8vw,64px)}.hero-inner{grid-template-columns:1fr;gap:38px}.hero-photo{width:min(78%,320px);justify-self:center}.section-title{display:block}.filters{margin-top:24px}.grid,.achievement-grid{grid-template-columns:1fr}.achievement-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.card.featured,.card.wide{grid-column:span 1}.split{display:block}.timeline{margin-top:45px}.nav-in{padding:0 16px}.project-gallery{grid-template-rows:100px 100px}.dsa-cards{grid-template-columns:1fr}.card h3{font-size:23px}}
 @media(max-width:520px){.achievement-grid{grid-template-columns:1fr}.achievement{min-height:0}}
 @media(prefers-reduced-motion:reduce){.achievement,.achievement:after{transition:none!important;transform:none!important}}
+.case-study-trigger{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid rgba(196,181,253,.2);border-radius:999px;background:rgba(139,92,246,.08);padding:9px 13px;color:#eee7ff;font-size:12px;font-weight:700;text-decoration:none;transition:background .2s,border-color .2s,transform .2s}.case-study-trigger:hover{transform:translateY(-1px);border-color:rgba(196,181,253,.45);background:rgba(139,92,246,.16)}.case-study-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:auto;padding-top:22px}.case-study-actions .link{margin:0;padding:0}
 </style>
 </head>
 <body>
@@ -288,7 +289,31 @@ document.querySelectorAll('.filter').forEach(btn=>btn.onclick=()=>{document.quer
 document.querySelectorAll('[data-achievement-filter]').forEach(btn=>btn.addEventListener('click',()=>{const category=btn.dataset.achievementFilter;let count=0;document.querySelectorAll('[data-achievement]').forEach(card=>{const show=category==='all'||card.dataset.achievement===category;card.hidden=!show;if(show)count++});document.querySelectorAll('[data-achievement-filter]').forEach(filter=>{const active=filter===btn;filter.classList.toggle('active',active);filter.setAttribute('aria-pressed',String(active))});document.querySelector('#achievement-visible-count').textContent=String(count)}));
 document.querySelectorAll('[data-carousel]').forEach(carousel=>{const track=carousel.querySelector('.carousel-track');const slides=[...carousel.querySelectorAll('.carousel-slide')];const dots=[...carousel.querySelectorAll('.carousel-dot')];let i=0;function go(n){i=(n+slides.length)%slides.length;track.style.transform='translateX(-'+(i*100)+'%)';dots.forEach((d,j)=>d.classList.toggle('active',j===i))}carousel.querySelector('.prev').addEventListener('click',()=>go(i-1));carousel.querySelector('.next').addEventListener('click',()=>go(i+1));dots.forEach((d,j)=>d.addEventListener('click',()=>go(j)))});
 </script>
-<script>const introVideo=document.querySelector('#intro-video video');introVideo?.addEventListener('ended',event=>{const video=event.currentTarget;video.currentTime=0;video.load()});</script>
+<script>
+const introVideo=document.querySelector('#intro-video video');
+introVideo?.addEventListener('ended',event=>{const video=event.currentTarget;video.currentTime=0;video.load()});
+if(introVideo){
+  let resumeWhenVisible=false;
+  const videoVisibility=new IntersectionObserver(([entry])=>{
+    const videoIsVisible=entry.intersectionRatio>=.25;
+    if(!videoIsVisible){
+      if(!introVideo.paused&&!introVideo.ended){resumeWhenVisible=true;introVideo.pause()}
+    }else if(resumeWhenVisible){resumeWhenVisible=false;introVideo.play().catch(()=>{})}
+  },{threshold:[0,.25]});
+  videoVisibility.observe(introVideo);
+}
+</script>
+<script>
+(()=>{
+  const ids={'Madonna / DistKV':'madonna-distkv','AI Exam Proctoring System':'ai-exam-proctoring','Athena — AI Research Assistant':'athena','URL Shortener API Service':'url-shortener','Medusa RAG':'medusa-rag','Cerberus':'cerberus','Vulcan Workflow Engine':'vulcan-workflow-engine','AI DevOps Autopilot':'ai-devops-autopilot'};
+  document.querySelectorAll('#work .grid > .card').forEach(card=>{
+    const repository=card.querySelector(':scope > a.link');if(!repository)return;
+    const slug=ids[card.querySelector('h3')?.textContent.trim()];if(!slug)return;
+    const actions=document.createElement('div');actions.className='case-study-actions';repository.after(actions);actions.appendChild(repository);
+    const link=document.createElement('a');link.className='case-study-trigger';link.href=`case-study.html?project=${encodeURIComponent(slug)}`;link.textContent='Read case study →';link.addEventListener('click',event=>{if(event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;event.preventDefault();window.location.assign(link.href)});actions.appendChild(link);
+  });
+})();
+</script>
 </body>
 </html>
 
